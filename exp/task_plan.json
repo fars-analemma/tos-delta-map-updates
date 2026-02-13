@@ -10,31 +10,31 @@
   {
     "index": 1,
     "category": "Baseline Experiment",
-    "title": "Condition A (Scratch Regeneration) \u2014 Cognitive Map Probing on Initial Exploration",
-    "description": "Run the scratch-regeneration baseline (Condition A) for cognitive-map probing during the initial exploration phase on ToS vision world. This replicates the original ToS cognitive-map probing protocol: at each exploration step, the model receives the full observation history and generates a complete global cognitive map from scratch. This is the control condition against which Conditions B and C are compared. We use Gemini-3 Pro on N=25 scenes (run00\u2013run24) with passive SCOUT proxy trajectories (~9\u201312 steps per scene). The SCOUT trajectory ensures standardized exploration coverage (360\u00b0 sweep + room visitation) so that differences between conditions reflect belief-update interface quality, not exploration strategy.\n\n**Reference**: \"Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?\" | https://github.com/mll-lab-nu/Theory-of-Space",
+    "title": "Condition A (Scratch Regeneration) — Cognitive Map Probing on Initial Exploration",
+    "description": "Run the scratch-regeneration baseline (Condition A) for cognitive-map probing during the initial exploration phase on ToS vision world. This replicates the original ToS cognitive-map probing protocol: at each exploration step, the model receives the full observation history and generates a complete global cognitive map from scratch. This is the control condition against which Conditions B and C are compared. We use Gemini-3 Pro on N=25 scenes (run00–run24) with passive SCOUT proxy trajectories (~9–12 steps per scene). The SCOUT trajectory ensures standardized exploration coverage (360° sweep + room visitation) so that differences between conditions reflect belief-update interface quality, not exploration strategy.\n\n**Reference**: \"Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?\" | https://github.com/mll-lab-nu/Theory-of-Space",
     "status": "completed",
     "summary": "Ran Condition A (scratch regeneration) cogmap probing on N=25 scenes with Gemini-3 Pro. Results: overall=0.219+/-0.014, pos=0.305+/-0.017, dir=0.112+/-0.010, facing=0.239+/-0.026. JSON parse failure rate: 0%. All 25 scenes successfully evaluated. Used ToS pipeline (passive SCOUT trajectories + standard global cogmap prompt). Created synthetic exploration_turn_logs for passive mode cogmap evaluation."
   },
   {
     "index": 2,
     "category": "Main Experiment",
-    "title": "Condition B (Rule-Based Full Regeneration) \u2014 Cognitive Map Probing on Initial Exploration",
+    "title": "Condition B (Rule-Based Full Regeneration) — Cognitive Map Probing on Initial Exploration",
     "description": "Run the rule-based full regeneration condition (Condition B) for cognitive-map probing during initial exploration on ToS vision world. Unlike Condition A, the model receives the previous cognitive map $M_{t-1}$ as explicit context alongside the current observation $O_t$, and is instructed to output a full updated map $M_t$ following explicit preserve/overwrite rules: (1) Preserve all entries from $M_{t-1}$ unchanged unless the current observation provides evidence to change them, (2) Only update objects visible in $O_t$ or newly observed, (3) Overwrite entries that contradict the current observation. This tests whether providing the prior map and enforcing evidence-based update rules reduces belief drift caused by regeneration noise. Uses the same Gemini-3 Pro model, N=25 scenes, and SCOUT proxy trajectories generated in the Condition A experiment.",
-    "status": "pending",
-    "summary": ""
+    "status": "completed",
+    "summary": "Condition B (rule-based full regeneration) completed on N=25 scenes. Used sequential per-step API calls with M_{t-1} context and explicit preserve/overwrite rules. Results: Overall=0.2230 (SE=0.0097), Pos=0.3380, Dir=0.1290, Facing=0.2020. Positional accuracy improved over Condition A (+3.3%), direction slightly improved (+1.7%), facing slightly degraded (-3.7%). Overall comparable to Condition A (22.3% vs 21.9%) but with lower variance. Zero JSON parse failures across 223 API calls."
   },
   {
     "index": 3,
     "category": "Optimization",
-    "title": "Optimize: Condition B (Rule-Based Full Regeneration) \u2014 Cognitive Map Probing on Initial Exploration",
-    "description": "Optimize the main experiment 'Condition B (Rule-Based Full Regeneration) \u2014 Cognitive Map Probing on Initial Exploration' to improve results.",
+    "title": "Optimize: Condition B (Rule-Based Full Regeneration) — Cognitive Map Probing on Initial Exploration",
+    "description": "Optimize the main experiment 'Condition B (Rule-Based Full Regeneration) — Cognitive Map Probing on Initial Exploration' to improve results.",
     "status": "pending",
     "summary": ""
   },
   {
     "index": 4,
     "category": "Main Experiment",
-    "title": "Condition C (Delta-Map Updates) \u2014 Cognitive Map Probing on Initial Exploration",
+    "title": "Condition C (Delta-Map Updates) — Cognitive Map Probing on Initial Exploration",
     "description": "Run the delta-map update condition (Condition C) for cognitive-map probing during initial exploration on ToS vision world. This condition uses the same inputs and update rules as Condition B, but instead of outputting a full updated map, the model outputs a compact delta JSON describing only the objects whose states should change. The evaluator then programmatically applies the delta to form $M_t = \\text{Apply}(M_{t-1}, \\delta_t)$. This tests whether reducing the model's output to only the changed entries further reduces transcription errors beyond Condition B. Uses the same Gemini-3 Pro model, N=25 scenes, and SCOUT proxy trajectories.",
     "status": "pending",
     "summary": ""
@@ -42,15 +42,15 @@
   {
     "index": 5,
     "category": "Optimization",
-    "title": "Optimize: Condition C (Delta-Map Updates) \u2014 Cognitive Map Probing on Initial Exploration",
-    "description": "Optimize the main experiment 'Condition C (Delta-Map Updates) \u2014 Cognitive Map Probing on Initial Exploration' to improve results.",
+    "title": "Optimize: Condition C (Delta-Map Updates) — Cognitive Map Probing on Initial Exploration",
+    "description": "Optimize the main experiment 'Condition C (Delta-Map Updates) — Cognitive Map Probing on Initial Exploration' to improve results.",
     "status": "pending",
     "summary": ""
   },
   {
     "index": 6,
     "category": "Baseline Experiment",
-    "title": "Condition A (Scratch Regeneration) \u2014 False-Belief Revision",
+    "title": "Condition A (Scratch Regeneration) — False-Belief Revision",
     "description": "Run the scratch-regeneration baseline (Condition A) for the false-belief revision task on ToS vision world. After the initial exploration phase, k=4 objects in each scene are secretly relocated or reoriented (specified by `falsebelief_exp.json`). The agent, retaining its exploration history, must re-explore using post-change images (`*_fbexp.png`) and update its cognitive map. Under Condition A, the model regenerates the entire map from the full observation history (including both pre-change and post-change observations) at each re-exploration step. This establishes the baseline for belief inertia and change identification metrics. Uses Gemini-3 Pro on N=25 scenes with a fixed post-change SCOUT-like re-exploration trajectory.\n\n**Reference**: \"Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?\" | https://github.com/mll-lab-nu/Theory-of-Space",
     "status": "pending",
     "summary": ""
@@ -58,7 +58,7 @@
   {
     "index": 7,
     "category": "Main Experiment",
-    "title": "Condition B (Rule-Based Full Regeneration) \u2014 False-Belief Revision",
+    "title": "Condition B (Rule-Based Full Regeneration) — False-Belief Revision",
     "description": "Run the rule-based full regeneration condition (Condition B) for the false-belief revision task on ToS vision world. During re-exploration, the model receives the previous cognitive map $M'_{t'-1}$ (initialized as $M_T$ from Condition B's initial exploration) and the current post-change observation $O'_{t'}$, with explicit preserve/overwrite rules. This tests whether providing the prior map and conflict-resolution rules helps the model overwrite obsolete beliefs when the environment has changed. Uses the same N=25 scenes, Gemini-3 Pro model, and post-change re-exploration trajectories prepared in the Condition A false-belief experiment.",
     "status": "pending",
     "summary": ""
@@ -66,15 +66,15 @@
   {
     "index": 8,
     "category": "Optimization",
-    "title": "Optimize: Condition B (Rule-Based Full Regeneration) \u2014 False-Belief Revision",
-    "description": "Optimize the main experiment 'Condition B (Rule-Based Full Regeneration) \u2014 False-Belief Revision' to improve results.",
+    "title": "Optimize: Condition B (Rule-Based Full Regeneration) — False-Belief Revision",
+    "description": "Optimize the main experiment 'Condition B (Rule-Based Full Regeneration) — False-Belief Revision' to improve results.",
     "status": "pending",
     "summary": ""
   },
   {
     "index": 9,
     "category": "Main Experiment",
-    "title": "Condition C (Delta-Map Updates) \u2014 False-Belief Revision",
+    "title": "Condition C (Delta-Map Updates) — False-Belief Revision",
     "description": "Run the delta-map update condition (Condition C) for the false-belief revision task on ToS vision world. During re-exploration, the model receives the previous cognitive map $M'_{t'-1}$ (initialized as $M_T$ from Condition C's initial exploration) and the current post-change observation, and outputs only a delta JSON with changed entries. The delta is applied programmatically. This tests whether the compact delta format improves belief revision (overwriting obsolete entries) compared to full regeneration. Uses the same N=25 scenes, Gemini-3 Pro model, and post-change re-exploration trajectories.",
     "status": "pending",
     "summary": ""
@@ -82,8 +82,8 @@
   {
     "index": 10,
     "category": "Optimization",
-    "title": "Optimize: Condition C (Delta-Map Updates) \u2014 False-Belief Revision",
-    "description": "Optimize the main experiment 'Condition C (Delta-Map Updates) \u2014 False-Belief Revision' to improve results.",
+    "title": "Optimize: Condition C (Delta-Map Updates) — False-Belief Revision",
+    "description": "Optimize the main experiment 'Condition C (Delta-Map Updates) — False-Belief Revision' to improve results.",
     "status": "pending",
     "summary": ""
   },
@@ -98,7 +98,7 @@
   {
     "index": 12,
     "category": "Analysis Experiment",
-    "title": "Edit Magnitude Analysis \u2014 Sparsity of Belief Updates",
+    "title": "Edit Magnitude Analysis — Sparsity of Belief Updates",
     "description": "Analyze the average number of objects updated per step under Conditions B and C during both initial exploration and false-belief revision. If the number of updates per step is small relative to the total number of objects in the map, this supports the 'sparse evidence' premise motivating delta-map updates: most steps only provide evidence about a small subset of objects. This analysis also compares the update patterns between initial exploration (where changes are additive, incorporating new objects) and false-belief revision (where changes involve overwriting existing entries).",
     "status": "pending",
     "summary": ""
@@ -106,7 +106,7 @@
   {
     "index": 13,
     "category": "Analysis Experiment",
-    "title": "Failure Stratification \u2014 Objects With vs Without Facing Direction",
+    "title": "Failure Stratification — Objects With vs Without Facing Direction",
     "description": "Stratify the belief update results by whether objects have a facing direction (orientation) or not. The ToS paper identifies orientation as a key perception bottleneck (facing accuracy is much lower than positional accuracy in vision world). This analysis tests whether the gains from Conditions B and C are larger for objects with facing direction (where drift and inertia are worst) vs objects without facing, and whether the belief-update interface disproportionately helps the orientation component of map correctness.",
     "status": "pending",
     "summary": ""
