@@ -1,3 +1,25 @@
 .venv/
 .env
 wandb/
+
+# ToS dataset (large binary files)
+Theory-of-Space/room_data/
+
+# Experiment results (raw outputs)
+delta_map_updates/results/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Log files
+*.log
+logs/
+
+# OS files
+.DS_Store
+
+# HuggingFace cache
+.cache/

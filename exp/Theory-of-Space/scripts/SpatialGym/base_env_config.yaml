@@ -1,0 +1,42 @@
+room_config:
+  n_objects: 4
+  room_num: 4
+  topology: 1
+  room_size: [6, 6]
+
+_common: &common
+  env_name: spatial
+  train_size: 25
+  test_size: 2
+
+# prompt
+_prompt_standard: &prompt_standard
+  prompt_config:
+    topdown: false
+    cogmap: false
+
+_prompt_topdown: &prompt_topdown
+  prompt_config:
+    topdown: true
+    cogmap: false
+
+# exp_type
+_passive: &passive
+  exp_type: passive
+  n_objects: 8
+  level: 2
+  main: 6
+  room_size: [15, 15]
+  render_mode: vision
+  proxy_agent: scout
+
+
+_active: &active
+  exp_type: active
+  n_objects: 8
+  max_exp_steps: 20
+  room_size: [15, 15]
+  level: 2
+  main: 6
+  render_mode: vision
+  calculate_information_gain: True
