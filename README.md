@@ -65,6 +65,19 @@ not create `exploration_turn_logs.json` (needed for cogmap evaluation). Before r
 cogmap phase, use `delta_map_updates.runners.cogmap_runner.ensure_passive_turn_logs()` to
 create synthetic turn log entries from `history_state.json`.
 
+## Condition B Sequential Runner
+
+Condition B uses a custom sequential runner (`delta_map_updates/runners/condition_b_runner.py`)
+that decomposes passive SCOUT trajectories into per-step observations, calling the API at each
+step with M_{t-1} as context. Key files:
+
+- `delta_map_updates/prompts/condition_b.py`: Prompt with preserve/overwrite rules
+- `delta_map_updates/runners/condition_b_runner.py`: Sequential runner (OpenAI client)
+- `delta_map_updates/scripts/run_condition_b.py`: Entry point
+- `delta_map_updates/evaluation/cogmap_eval.py`: Evaluation for sequential conditions
+
+Run: `python -m delta_map_updates.scripts.run_condition_b --num 25`
+
 ## Key Files Modified in ToS
 
 - `Theory-of-Space/scripts/SpatialGym/base_model_config.yaml`: Added `gemini-3-pro` entry using MaaS proxy base_url.
