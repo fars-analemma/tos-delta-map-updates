@@ -1,0 +1,2 @@
+File Descriptions
+File Description meta_data.json Complete scene metadata including room layout, object positions, orientations, and connectivity falsebelief_exp.json Specifies object modifications (move/rotate) for belief update evaluation agent_facing_*.png Egocentric views from agent's perspective in 4 cardinal directions <object_id>_facing_*.png Views from each object/door position *_fbexp.png Images rendered after false-belief modifications top_down*.png Bird's-eye view for visualization and debugging

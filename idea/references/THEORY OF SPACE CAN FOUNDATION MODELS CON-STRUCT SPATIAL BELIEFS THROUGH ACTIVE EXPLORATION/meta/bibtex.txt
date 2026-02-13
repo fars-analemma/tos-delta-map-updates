@@ -1,0 +1,5 @@
+@Inproceedings{Zhang2026TheoryOS,
+ author = {Pingyue Zhang and Zihan Huang and Yue Wang and Jieyu Zhang and Letian Xue and Zihan Wang and Qineng Wang and Keshigeyan Chandrasegaran and Ruohan Zhang and Yejin Choi and Ranjay Krishna and Jiajun Wu and Fei-Fei Li and Manling Li},
+ title = {Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?},
+ year = {2026}
+}

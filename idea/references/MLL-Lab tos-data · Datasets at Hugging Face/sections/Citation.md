@@ -1,0 +1,2 @@
+Citation
+@inproceedings{zhang2026theoryofspace, title = {Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?}, author = {Zhang, Pingyue and Huang, Zihan and Wang, Yue and Zhang, Jieyu and Xue, Letian and Wang, Zihan and Wang, Qineng and Chandrasegaran, Keshigeyan and Zhang, Ruohan and Choi, Yejin and Krishna, Ranjay and Wu, Jiajun and Li, Fei-Fei and Li, Manling}, booktitle = {International Conference on Learning Representations (ICLR)}, year = {2026}, }

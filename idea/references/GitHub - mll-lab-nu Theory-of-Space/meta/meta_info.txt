@@ -1,0 +1,4 @@
+url: https://github.com/mll-lab-nu/Theory-of-Space
+title: GitHub - mll-lab-nu Theory-of-Space
+authors: Pingyue Zhang, Zihan Huang, Yue Wang, Jieyu Zhang, Letian Xue, Zihan Wang, Qineng Wang, Keshigeyan Chandrasegaran, Ruohan Zhang, Yejin Choi, Ranjay Krishna, Jiajun Wu, Fei-Fei Li, Manling Li
+publish date: 2026

@@ -1,0 +1,4 @@
+HOW DO FOUNDATION MODELS MANAGE INTERNAL SPATIAL BELIEF?
+In this section, we use the THEORY OF SPACE belief-probing mechanism (as proposed in §2.1) to diagnose how MLLMs manage internal spatial beliefs and move beyond treating the agent as a black box. Figure 5 shows the example of how we probe the belief of agent at each exploration step
+
+[IMAGE START]Figure 5 : Figure5: Internal Spatial Belief Probing. At each step, the agent executes an action, receives an observation, and updates its spatial belief. We probe this belief by prompting the agent to (i) output a JSON-structured cognitive map of all observed objects and (ii) select the next unexplored position from a top-down view given a set of labeled candidate points. For clarity, the figure shows the probing process for a single step.[IMAGE END]

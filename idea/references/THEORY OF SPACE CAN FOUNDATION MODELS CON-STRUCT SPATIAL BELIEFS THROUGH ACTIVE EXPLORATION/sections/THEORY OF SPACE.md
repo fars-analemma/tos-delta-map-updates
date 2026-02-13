@@ -1,0 +1,2 @@
+THEORY OF SPACE
+To build agents with spatial intelligence, we argue for evaluating not merely passive reasoning, but the active, self-directed construction of spatial belief from partial observations. We introduce THEORY OF SPACE, a conceptual counterpart to Theory of Mind (ToM). While ToM models hidden mental states of others, THEORY OF SPACE models uncertain, currently unobserved structure of space.

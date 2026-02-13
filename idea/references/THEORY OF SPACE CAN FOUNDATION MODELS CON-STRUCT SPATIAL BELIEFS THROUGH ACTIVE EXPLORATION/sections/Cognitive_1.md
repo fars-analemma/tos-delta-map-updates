@@ -1,0 +1,2 @@
+Cognitive
+-Content: include ALL objects and gates; include the agent -Facing: use "north|south|east|west" (cardinal direction only). NOTE: you must include all objects and gates. [Example] { "agent": {"position": [2, 3], "facing": "east"}, "chair": {"position": [2, 4], "facing": "north"}, "sofa": {"position": [5, 1], "facing": "west"} }

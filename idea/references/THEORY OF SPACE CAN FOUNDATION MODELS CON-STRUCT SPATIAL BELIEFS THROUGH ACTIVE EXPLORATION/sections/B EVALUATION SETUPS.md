@@ -1,0 +1,2 @@
+B EVALUATION SETUPS
+To enable a like-for-like comparison between the text and vision settings, we instantiate identical room layouts across modalities. Concretely, we generate 100 evaluation instances with IDs 0-99; for each ID, we use the ID itself as the random seed to drive task sampling in both environments. This seed tying guarantees deterministic layouts and bit-for-bit reproducibility across modalities.

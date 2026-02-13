@@ -1,0 +1,2 @@
+Cognitive
+-+y: facing forward -when facing +y: +x -> right, -x -> left, -y -> backward -All positions/facings relative to this frame. -Content: "objects" dict; include all objects and doors in your current field of view; exclude agent. -Facing: use "+x|-x|+y|-y" (local axes). [Example] { "origin": "agent", "objects": { "chair": {"position": [0, 1], "facing": "-x"} } } -Frame: origin [0,0] is your initial position; your initial facing direction is north.

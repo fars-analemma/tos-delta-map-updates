@@ -1,0 +1,38 @@
+abstract.md
+INTRODUCTION.md
+THEORY OF SPACE.md
+Definition THEORY OF SPACE.md
+A PARADIGM FOR ASSESSING THEORY OF SPACE OF LARGE FOUNDATION MODELS.md
+BENCHMARKING THEORY OF SPACE ABILITY FOR FOUNDATION MODELS.md
+SPATIAL ENVIRONMENT CONSTRUCTION.md
+DOWNSTREAM SPATIAL TASKS.md
+ASSESSMENT DIMENSIONS.md
+Mental Rotation.md
+Location2View.md
+Pairwise Direction.md
+Perspective taking.md
+Perspective Determine.md
+Action2View.md
+View2Action.md
+Backward Dynamics.md
+EXPLORATION STRATEGIES.md
+EVALUATION AND ANALYSIS.md
+HOW DO FOUNDATION MODELS MANAGE INTERNAL SPATIAL BELIEF.md
+COGNITIVE MAP PROBING.md
+Results in Table.md
+Cognitive Map Validation & Correlation..md
+UNCERTAINTY MAP PROBING.md
+BELIEF REVISION TASK.md
+Proximity weight (wi).md
+Key Findings Vision Deficiencies & Belief Inertia.md
+RELATED WORK.md
+CONCLUSIONS.md
+Proxy agents.md
+Exploration Prompt (text).md
+Cognitive.md
+Cognitive_1.md
+Cognitive_2.md
+Symbol Map (text).md
+B EVALUATION SETUPS.md
+Additional Results.md
+References.md
