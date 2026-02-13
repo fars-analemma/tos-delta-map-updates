@@ -23,9 +23,10 @@ def main():
     parser.add_argument("--num", type=int, default=25, help="Number of scenes")
     parser.add_argument("--start", type=int, default=0, help="Starting scene index")
     parser.add_argument("--model", type=str, default="gemini-3-pro")
-    parser.add_argument("--temperature", type=float, default=1.0)
+    parser.add_argument("--temperature", type=float, default=0.3)
     parser.add_argument("--max-tokens", type=int, default=32768)
     parser.add_argument("--max-retries", type=int, default=3)
+    parser.add_argument("--output-dir", type=str, default=None, help="Override output directory")
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -40,6 +41,7 @@ def main():
         max_retries=args.max_retries,
         num_scenes=args.num,
         start_scene=args.start,
+        output_base=args.output_dir,
     )
 
     total_calls = sum(r.get("total_api_calls", 0) for r in results if isinstance(r, dict))

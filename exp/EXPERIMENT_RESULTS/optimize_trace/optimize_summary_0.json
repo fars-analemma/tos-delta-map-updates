@@ -1,0 +1,20 @@
+{
+  "optimize_index": 0,
+  "issues": [
+    {
+      "title": "Cumulative history sent instead of current-step-only observation",
+      "description": "The condition_b_runner.py _build_step_message function received cumulative steps_so_far (steps 1..t) at each step t, rather than only the current observation O_t. This made M_{t-1} redundant since the model already had access to all prior observations. Fixed by changing to send only current step text and images. However, this change DEGRADED performance - the cumulative history was actually beneficial because M_{t-1} in JSON format is a lossy representation of spatial knowledge."
+    },
+    {
+      "title": "Prompt lacked spatial anchoring for current-step-only mode",
+      "description": "When switching to current-step-only observations, the model lost context about its accumulated position/rotation. Added _get_agent_state_section() helper that extracts position/facing from M_{t-1} and added explicit instruction that the model is seeing only the current step. This helped somewhat but was insufficient to compensate for the loss of full observation history."
+    },
+    {
+      "title": "High temperature (1.0) adding unnecessary noise",
+      "description": "Temperature was 1.0 which adds randomness that compounds across sequential steps. Lowered to 0.3 for more consistent outputs. This change alone was minor compared to the observation scope change."
+    }
+  ],
+  "experiment_result_path": "EXPERIMENT_RESULTS/optimize_trace/iteration_0/",
+  "success": false,
+  "summary": "Attempted to fix cumulative history 'bug' by sending only current-step observation (matching the theoretical design of M_{t-1} + O_t). Also enhanced prompt with spatial anchoring and lowered temperature to 0.3. The optimization FAILED: overall accuracy dropped from 0.2230 (original B) to 0.2065 (-7.4%), with facing accuracy degrading most (-14.9%). The cumulative history, while deviating from the theoretical design, was actually beneficial because the JSON map format is a lossy compression that cannot fully replace raw observation text. Original Condition B results remain the best for this condition."
+}

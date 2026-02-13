@@ -78,6 +78,18 @@ step with M_{t-1} as context. Key files:
 
 Run: `python -m delta_map_updates.scripts.run_condition_b --num 25`
 
+### Optimization History (Condition B)
+
+**Iteration 0**: Attempted to fix cumulative history (sending only current-step observation O_t
+instead of all steps 1..t, matching the theoretical M_{t-1} + O_t design). Also added spatial
+anchoring from M_{t-1} agent state and lowered temperature to 0.3. **Result: FAILED** --
+overall dropped from 0.2230 to 0.2065 (-7.4%). The cumulative history, while deviating from
+the theoretical design, was actually beneficial. Original results retained.
+
+- Code changes: `condition_b_runner.py` (current-step-only), `condition_b.py` (spatial anchoring),
+  `run_condition_b.py` (temperature 0.3, --output-dir arg)
+- Results: `EXPERIMENT_RESULTS/optimize_trace/iteration_0/`
+
 ## Key Files Modified in ToS
 
 - `Theory-of-Space/scripts/SpatialGym/base_model_config.yaml`: Added `gemini-3-pro` entry using MaaS proxy base_url.
