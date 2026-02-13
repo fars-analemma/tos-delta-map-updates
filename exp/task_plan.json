@@ -12,8 +12,8 @@
     "category": "Baseline Experiment",
     "title": "Condition A (Scratch Regeneration) \u2014 Cognitive Map Probing on Initial Exploration",
     "description": "Run the scratch-regeneration baseline (Condition A) for cognitive-map probing during the initial exploration phase on ToS vision world. This replicates the original ToS cognitive-map probing protocol: at each exploration step, the model receives the full observation history and generates a complete global cognitive map from scratch. This is the control condition against which Conditions B and C are compared. We use Gemini-3 Pro on N=25 scenes (run00\u2013run24) with passive SCOUT proxy trajectories (~9\u201312 steps per scene). The SCOUT trajectory ensures standardized exploration coverage (360\u00b0 sweep + room visitation) so that differences between conditions reflect belief-update interface quality, not exploration strategy.\n\n**Reference**: \"Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?\" | https://github.com/mll-lab-nu/Theory-of-Space",
-    "status": "pending",
-    "summary": ""
+    "status": "completed",
+    "summary": "Ran Condition A (scratch regeneration) cogmap probing on N=25 scenes with Gemini-3 Pro. Results: overall=0.219+/-0.014, pos=0.305+/-0.017, dir=0.112+/-0.010, facing=0.239+/-0.026. JSON parse failure rate: 0%. All 25 scenes successfully evaluated. Used ToS pipeline (passive SCOUT trajectories + standard global cogmap prompt). Created synthetic exploration_turn_logs for passive mode cogmap evaluation."
   },
   {
     "index": 2,

@@ -8,6 +8,11 @@ Theory-of-Space/room_data/
 # Experiment results (raw outputs)
 delta_map_updates/results/
 
+# ToS inference results and generated data
+Theory-of-Space/results/
+Theory-of-Space/data/
+Theory-of-Space/scripts/SpatialGym/tmp/
+
 # Python cache
 __pycache__/
 *.pyc

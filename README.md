@@ -58,6 +58,13 @@ exp/
 └── idea/                     # Research proposal and references
 ```
 
+## Passive Mode Workaround
+
+The ToS passive pipeline stores all SCOUT observations in a single messages.json but does
+not create `exploration_turn_logs.json` (needed for cogmap evaluation). Before running the
+cogmap phase, use `delta_map_updates.runners.cogmap_runner.ensure_passive_turn_logs()` to
+create synthetic turn log entries from `history_state.json`.
+
 ## Key Files Modified in ToS
 
 - `Theory-of-Space/scripts/SpatialGym/base_model_config.yaml`: Added `gemini-3-pro` entry using MaaS proxy base_url.

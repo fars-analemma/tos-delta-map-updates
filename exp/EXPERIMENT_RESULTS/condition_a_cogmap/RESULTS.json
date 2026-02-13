@@ -1,0 +1,225 @@
+{
+  "experiment": "Condition A - Scratch Regeneration Cogmap Probing",
+  "model": "gemini-3-pro",
+  "n_scenes": 25,
+  "exp_type": "passive",
+  "render_mode": "vision",
+  "proxy_agent": "scout",
+  "temperature": 1.0,
+  "max_completion_tokens": 32768,
+  "aggregate": {
+    "n_total": 25,
+    "n_successful": 25,
+    "extraction_failure_rate": 0.0,
+    "overall_mean": 0.21870278512829017,
+    "overall_se": 0.014277217082353567,
+    "pos_mean": 0.3053002745767897,
+    "pos_se": 0.016620700213192906,
+    "dir_mean": 0.11199999999999997,
+    "dir_se": 0.009514608650794721,
+    "facing_mean": 0.2388080808080808,
+    "facing_se": 0.02646799847689895
+  },
+  "per_sample": [
+    {
+      "extraction_success": true,
+      "overall": 0.2395974882055505,
+      "pos": 0.3104591312833181,
+      "dir": 0.15833333333333333,
+      "facing": 0.25,
+      "room_hash": "177ef6532828f8d7"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.33483044546805535,
+      "pos": 0.37671355862638833,
+      "dir": 0.18333333333333332,
+      "facing": 0.4444444444444444,
+      "room_hash": "1a4435e36ac4946b"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.2922306852219898,
+      "pos": 0.3433587223326361,
+      "dir": 0.13333333333333333,
+      "facing": 0.4,
+      "room_hash": "1cc5063d7b40f1e6"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.18860608695687886,
+      "pos": 0.19081826087063664,
+      "dir": 0.041666666666666664,
+      "facing": 0.3333333333333333,
+      "room_hash": "48e082c5248705ac"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.3343795520006194,
+      "pos": 0.31424976711296937,
+      "dir": 0.13333333333333333,
+      "facing": 0.5555555555555556,
+      "room_hash": "66b32ca3d0e68f66"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.22905115331181225,
+      "pos": 0.3454867932687701,
+      "dir": 0.14166666666666666,
+      "facing": 0.2,
+      "room_hash": "676fc5060403b3cd"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.20622411506229552,
+      "pos": 0.3353390118535532,
+      "dir": 0.08333333333333333,
+      "facing": 0.2,
+      "room_hash": "6887bce43e906ec8"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.23498902114423373,
+      "pos": 0.31557312403876175,
+      "dir": 0.11666666666666667,
+      "facing": 0.2727272727272727,
+      "room_hash": "98c0e9a1b0df9846"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.21690208619831383,
+      "pos": 0.40146383435251726,
+      "dir": 0.15833333333333333,
+      "facing": 0.09090909090909091,
+      "room_hash": "99b4c48b625e4fbf"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.22986670403166168,
+      "pos": 0.3062667787616517,
+      "dir": 0.08333333333333333,
+      "facing": 0.3,
+      "room_hash": "9c93132bc4a3fc6e"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.13482270756313133,
+      "pos": 0.1628014560227274,
+      "dir": 0.041666666666666664,
+      "facing": 0.2,
+      "room_hash": "a5d70877c47dca92"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.24481115414055035,
+      "pos": 0.3761001290883177,
+      "dir": 0.15833333333333333,
+      "facing": 0.2,
+      "room_hash": "ab5ab5bce5f3b07b"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.2686869137449216,
+      "pos": 0.37500013517415876,
+      "dir": 0.15833333333333333,
+      "facing": 0.2727272727272727,
+      "room_hash": "b08ab2603df9e33e"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.25880496140631454,
+      "pos": 0.3430815508856103,
+      "dir": 0.13333333333333333,
+      "facing": 0.3,
+      "room_hash": "b7fa96dc51854888"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.022513168925232446,
+      "pos": 0.059206173442364,
+      "dir": 0.008333333333333333,
+      "facing": 0.0,
+      "room_hash": "be2a170e0b556fac"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.15828571603025435,
+      "pos": 0.3081904814240964,
+      "dir": 0.16666666666666666,
+      "facing": 0.0,
+      "room_hash": "bf30f4c4682e89b9"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.2577400420480836,
+      "pos": 0.3671595200836447,
+      "dir": 0.13333333333333333,
+      "facing": 0.2727272727272727,
+      "room_hash": "c18b2451dc10d3bb"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.11064836167767694,
+      "pos": 0.2652784183663642,
+      "dir": 0.06666666666666667,
+      "facing": 0.0,
+      "room_hash": "cde09c0515a88176"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.2595067951243399,
+      "pos": 0.3785203853730195,
+      "dir": 0.15,
+      "facing": 0.25,
+      "room_hash": "dc18c4fdab409d1c"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.246338322584021,
+      "pos": 0.339014967752063,
+      "dir": 0.1,
+      "facing": 0.3,
+      "room_hash": "e0106806ec5d6779"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.2500030283687575,
+      "pos": 0.316675751772939,
+      "dir": 0.1,
+      "facing": 0.3333333333333333,
+      "room_hash": "e4ed8a9f7d46dc54"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.21733556182054928,
+      "pos": 0.2936733521283145,
+      "dir": 0.10833333333333334,
+      "facing": 0.25,
+      "room_hash": "e8eab6a6304594ab"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.20632181886731718,
+      "pos": 0.31340990104639604,
+      "dir": 0.08333333333333333,
+      "facing": 0.2222222222222222,
+      "room_hash": "ec118b1f2bd315d7"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.23668130544066898,
+      "pos": 0.3544883607664514,
+      "dir": 0.13333333333333333,
+      "facing": 0.2222222222222222,
+      "room_hash": "ec2d73866de1aead"
+    },
+    {
+      "extraction_success": true,
+      "overall": 0.0883924328640246,
+      "pos": 0.14017729859207378,
+      "dir": 0.025,
+      "facing": 0.1,
+      "room_hash": "ecadfe26623cfd3f"
+    }
+  ]
+}
