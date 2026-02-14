@@ -77,17 +77,19 @@ def _assign_images_to_steps(
 def _build_step_message(
     system_prompt: str,
     preamble: str,
-    current_step_text: str,
+    steps_so_far: List[str],
     preamble_images: List[str],
-    current_step_images: List[str],
+    step_images_list: List[List[str]],
     condition_b_prompt: str,
     image_base_dir: str,
 ) -> List[Dict[str, Any]]:
-    """Build the OpenAI-format messages for a single step with current-step-only observation."""
-    observation_section = "## Current Observation\n" + current_step_text + "\n"
-    user_content_text = preamble + observation_section + "\n" + condition_b_prompt
+    """Build the OpenAI-format messages for a single step."""
+    history_section = "## Exploration History\n" + "\n".join(steps_so_far) + "\n"
+    user_content_text = preamble + history_section + "\n" + condition_b_prompt
 
-    all_images = list(preamble_images) + list(current_step_images)
+    all_images = list(preamble_images)
+    for si in step_images_list:
+        all_images.extend(si)
 
     resolved_images = []
     for img_path in all_images:
@@ -186,14 +188,17 @@ def run_condition_b_scene(
     total_calls = 0
 
     for t, step_text in enumerate(steps, start=1):
+        steps_so_far = steps[:t]
+        images_so_far = step_images[:t]
+
         cb_prompt = get_condition_b_prompt(prev_map, enable_think=True)
 
         api_messages = _build_step_message(
             system_prompt=system_prompt,
             preamble=preamble,
-            current_step_text=step_text,
+            steps_so_far=steps_so_far,
             preamble_images=preamble_images,
-            current_step_images=step_images[t - 1],
+            step_images_list=images_so_far,
             condition_b_prompt=cb_prompt,
             image_base_dir=image_base_dir,
         )

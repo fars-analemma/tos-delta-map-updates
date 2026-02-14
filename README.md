@@ -80,15 +80,17 @@ Run: `python -m delta_map_updates.scripts.run_condition_b --num 25`
 
 ### Optimization History (Condition B)
 
-**Iteration 0**: Attempted to fix cumulative history (sending only current-step observation O_t
-instead of all steps 1..t, matching the theoretical M_{t-1} + O_t design). Also added spatial
-anchoring from M_{t-1} agent state and lowered temperature to 0.3. **Result: FAILED** --
-overall dropped from 0.2230 to 0.2065 (-7.4%). The cumulative history, while deviating from
-the theoretical design, was actually beneficial. Original results retained.
+**Iteration 0** (FAILED): Switched to current-step-only observations + spatial anchoring + temp=0.3.
+Overall dropped from 0.2230 to 0.2065 (-7.4%). Cumulative history was proven beneficial.
 
-- Code changes: `condition_b_runner.py` (current-step-only), `condition_b.py` (spatial anchoring),
-  `run_condition_b.py` (temperature 0.3, --output-dir arg)
-- Results: `EXPERIMENT_RESULTS/optimize_trace/iteration_0/`
+**Iteration 1** (current): Reverted to cumulative history. Added explicit facing direction guidance
+with egocentric-to-cardinal conversion rules, agent state anchoring from M_{t-1}, temp=0.5.
+Overall improved from 0.2230 to 0.2246 (+0.7%), facing from 0.2020 to 0.2067 (+2.3%),
+perception from 0.1523 to 0.2035 (+33.6%).
+
+- Code changes: `condition_b.py` (facing direction rules), `condition_b_runner.py` (reverted to cumulative),
+  `run_condition_b.py` (temperature 0.5)
+- Results: `EXPERIMENT_RESULTS/optimize_trace/iteration_1/`, `EXPERIMENT_RESULTS/condition_b_cogmap/`
 
 ## Key Files Modified in ToS
 

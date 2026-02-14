@@ -1,0 +1,233 @@
+{
+  "experiment": "Condition B Optimization - Cumulative History + Facing Guidance (Iteration 1)",
+  "model": "gemini-3-pro",
+  "n_scenes": 25,
+  "exp_type": "passive",
+  "render_mode": "vision",
+  "proxy_agent": "scout",
+  "temperature": 0.5,
+  "max_completion_tokens": 32768,
+  "changes": [
+    "Reverted to cumulative history (all steps 1..t instead of current-step-only)",
+    "Added explicit facing direction guidance with egocentric-to-cardinal conversion rules",
+    "Added agent state section from M_{t-1} for context",
+    "Lowered temperature from 1.0 to 0.5"
+  ],
+  "aggregate": {
+    "n_total": 25,
+    "n_successful": 25,
+    "extraction_failure_rate": 0.0,
+    "total_api_calls": 224,
+    "total_retries": 1,
+    "json_retry_rate": 0.004464285714285714,
+    "overall_mean": 0.22457460032194276,
+    "overall_se": 0.00781329064392169,
+    "pos_mean": 0.341390467632495,
+    "pos_se": 0.01115039900785306,
+    "dir_mean": 0.12566666666666668,
+    "dir_se": 0.00771182353417285,
+    "facing_mean": 0.20666666666666664,
+    "facing_se": 0.021223902452247565
+  },
+  "per_turn": {
+    "perception_mean": 0.20345625528925756,
+    "perception_se": 0.008885377986707485,
+    "perception_n": 49,
+    "stability_mean": 0.2206549645442403,
+    "stability_se": 0.003982397950730227,
+    "stability_n": 198
+  },
+  "comparison": {
+    "vs_original_b": {
+      "overall_delta": 0.0016,
+      "pos_delta": 0.0034,
+      "dir_delta": -0.0033,
+      "facing_delta": 0.0047,
+      "conclusion": "Marginal improvement over original B on overall (+0.7%) and facing (+2.3%)"
+    },
+    "vs_condition_a": {
+      "overall_delta": 0.0059,
+      "pos_delta": 0.0361,
+      "dir_delta": 0.0137,
+      "facing_delta": -0.0321,
+      "conclusion": "Better than Cond A on overall (+2.7%), pos (+11.8%), dir (+12.2%), but lower facing (-13.4%)"
+    }
+  },
+  "per_sample": [
+    {
+      "room_hash": "177ef6532828f8d7",
+      "overall": 0.1738,
+      "pos": 0.2714,
+      "dir": 0.0833,
+      "facing": 0.1667
+    },
+    {
+      "room_hash": "1a4435e36ac4946b",
+      "overall": 0.2754,
+      "pos": 0.3874,
+      "dir": 0.2167,
+      "facing": 0.2222
+    },
+    {
+      "room_hash": "1cc5063d7b40f1e6",
+      "overall": 0.2978,
+      "pos": 0.3851,
+      "dir": 0.1083,
+      "facing": 0.4
+    },
+    {
+      "room_hash": "48e082c5248705ac",
+      "overall": 0.1699,
+      "pos": 0.2737,
+      "dir": 0.125,
+      "facing": 0.1111
+    },
+    {
+      "room_hash": "66b32ca3d0e68f66",
+      "overall": 0.1834,
+      "pos": 0.2807,
+      "dir": 0.1583,
+      "facing": 0.1111
+    },
+    {
+      "room_hash": "676fc5060403b3cd",
+      "overall": 0.2062,
+      "pos": 0.2852,
+      "dir": 0.1333,
+      "facing": 0.2
+    },
+    {
+      "room_hash": "6887bce43e906ec8",
+      "overall": 0.1801,
+      "pos": 0.2235,
+      "dir": 0.1167,
+      "facing": 0.2
+    },
+    {
+      "room_hash": "98c0e9a1b0df9846",
+      "overall": 0.1635,
+      "pos": 0.2997,
+      "dir": 0.1,
+      "facing": 0.0909
+    },
+    {
+      "room_hash": "99b4c48b625e4fbf",
+      "overall": 0.2934,
+      "pos": 0.375,
+      "dir": 0.1417,
+      "facing": 0.3636
+    },
+    {
+      "room_hash": "9c93132bc4a3fc6e",
+      "overall": 0.2069,
+      "pos": 0.4208,
+      "dir": 0.2,
+      "facing": 0.0
+    },
+    {
+      "room_hash": "a5d70877c47dca92",
+      "overall": 0.2394,
+      "pos": 0.3099,
+      "dir": 0.1083,
+      "facing": 0.3
+    },
+    {
+      "room_hash": "ab5ab5bce5f3b07b",
+      "overall": 0.2216,
+      "pos": 0.2733,
+      "dir": 0.0917,
+      "facing": 0.3
+    },
+    {
+      "room_hash": "b08ab2603df9e33e",
+      "overall": 0.2432,
+      "pos": 0.3568,
+      "dir": 0.1,
+      "facing": 0.2727
+    },
+    {
+      "room_hash": "b7fa96dc51854888",
+      "overall": 0.1869,
+      "pos": 0.3856,
+      "dir": 0.175,
+      "facing": 0.0
+    },
+    {
+      "room_hash": "be2a170e0b556fac",
+      "overall": 0.2452,
+      "pos": 0.3024,
+      "dir": 0.1333,
+      "facing": 0.3
+    },
+    {
+      "room_hash": "bf30f4c4682e89b9",
+      "overall": 0.2709,
+      "pos": 0.396,
+      "dir": 0.1167,
+      "facing": 0.3
+    },
+    {
+      "room_hash": "c18b2451dc10d3bb",
+      "overall": 0.219,
+      "pos": 0.3834,
+      "dir": 0.0917,
+      "facing": 0.1818
+    },
+    {
+      "room_hash": "cde09c0515a88176",
+      "overall": 0.2228,
+      "pos": 0.4024,
+      "dir": 0.175,
+      "facing": 0.0909
+    },
+    {
+      "room_hash": "dc18c4fdab409d1c",
+      "overall": 0.2465,
+      "pos": 0.4311,
+      "dir": 0.1417,
+      "facing": 0.1667
+    },
+    {
+      "room_hash": "e0106806ec5d6779",
+      "overall": 0.1874,
+      "pos": 0.3038,
+      "dir": 0.0583,
+      "facing": 0.2
+    },
+    {
+      "room_hash": "e4ed8a9f7d46dc54",
+      "overall": 0.1968,
+      "pos": 0.3794,
+      "dir": 0.1,
+      "facing": 0.1111
+    },
+    {
+      "room_hash": "e8eab6a6304594ab",
+      "overall": 0.2599,
+      "pos": 0.3712,
+      "dir": 0.075,
+      "facing": 0.3333
+    },
+    {
+      "room_hash": "ec118b1f2bd315d7",
+      "overall": 0.2228,
+      "pos": 0.3212,
+      "dir": 0.125,
+      "facing": 0.2222
+    },
+    {
+      "room_hash": "ec2d73866de1aead",
+      "overall": 0.2355,
+      "pos": 0.3758,
+      "dir": 0.1083,
+      "facing": 0.2222
+    },
+    {
+      "room_hash": "ecadfe26623cfd3f",
+      "overall": 0.2661,
+      "pos": 0.3399,
+      "dir": 0.1583,
+      "facing": 0.3
+    }
+  ]
+}

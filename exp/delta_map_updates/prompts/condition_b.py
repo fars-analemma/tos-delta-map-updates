@@ -1,9 +1,6 @@
 # Condition B: Rule-based full regeneration with preserve/overwrite rules.
-# The model receives M_{t-1} as explicit context alongside O_t and must output
-# a full updated map M_t following evidence-based update rules:
-#   1. Preserve all entries from M_{t-1} unchanged unless current observation contradicts them
-#   2. Only update objects visible in O_t or newly observed
-#   3. Overwrite entries that contradict current observation
+# Prompt provides M_{t-1} context alongside cumulative observations O_1..O_t,
+# with explicit update rules and strong facing-direction guidance.
 
 import json
 import sys
@@ -22,7 +19,8 @@ from vagen.env.spatial.Base.tos_base.prompts.cogmap_prompts import (
 CONDITION_B_UPDATE_RULES = """\
 ## Cognitive Map Update Rules
 
-You are seeing **only the current step's observation**. Your previous cognitive map below contains all your knowledge from prior observations. Use it as your primary memory.
+You are given your **previous cognitive map** (from the last step) below.
+Your task is to produce an **updated cognitive map** that reflects ALL of your knowledge so far.
 
 {agent_state_section}
 
@@ -35,9 +33,22 @@ You are seeing **only the current step's observation**. Your previous cognitive 
 1. **Preserve rule**: Copy ALL entries from the previous map unchanged, UNLESS the current observation provides direct evidence that they should change. Do NOT modify entries for objects not visible in the current observation.
 2. **Evidence restriction**: Only add or update entries for objects that are visible in the current observation or are newly observed. If an object is not visible right now, keep its previous entry exactly as-is.
 3. **Conflict resolution**: If the current observation contradicts a previous entry for a currently visible object (e.g., different position or facing direction), overwrite that object's entry to match the current observation.
-4. **Agent update**: Update the agent's position and facing to reflect the actions taken in this step. Use the actions described in the current observation to compute the new agent state from the previous map's agent entry.
+4. **Agent update**: Always update the agent's position and facing based on the actions taken. Compute the new position and cardinal facing from the previous state and the actions in the latest step.
 
-**IMPORTANT**: Do NOT remove or modify entries for objects that are NOT visible in the current observation. Only update what you can currently see. The previous map is your ONLY source of knowledge about objects not in your current view.
+### Facing Direction Rules (CRITICAL)
+Every object in your map MUST have a "facing" key with a cardinal direction ("north", "south", "east", "west"). This includes ALL objects: furniture, small items, doors, and the agent.
+
+To determine an object's facing in **global cardinal directions**:
+- First determine YOUR current facing (the agent's cardinal direction after all rotations).
+- Objects whose front faces toward you: their facing = opposite of your facing direction.
+- Objects whose front faces to your left: rotate your facing 90 degrees counterclockwise.
+- Objects whose front faces to your right: rotate your facing 90 degrees clockwise.
+- Objects whose front faces away from you: their facing = same as your facing direction.
+- Remember: when you face north, your right is east. When you face east, your right is south. And so on.
+
+If an object from the previous map is missing its "facing" key, add your best estimate based on observation images.
+
+**IMPORTANT**: Do NOT remove or modify entries for objects that are NOT visible in the current observation. Only update what you can currently see.
 
 Now output the full updated cognitive map incorporating both the preserved entries and any updates from the current observation.
 """
@@ -48,7 +59,7 @@ def _get_agent_state_section(prev_map: dict) -> str:
     pos = agent.get("position")
     facing = agent.get("facing")
     if pos and facing:
-        return f"**Your current state**: You are at position {pos}, facing **{facing}**. Interpret the current observation relative to this position and orientation."
+        return f"**Your current state (from previous map)**: position {pos}, facing **{facing}**."
     elif not prev_map:
         return "**Your current state**: This is your first observation. You start at position [0, 0], facing **north**."
     return ""

@@ -1,0 +1,24 @@
+{
+  "optimize_index": 1,
+  "issues": [
+    {
+      "title": "Iteration 0 broke cumulative history (reverted)",
+      "description": "Iteration 0 changed the runner to send only the current step's observation instead of cumulative history (steps 1..t). This was proven to degrade performance (-7.4% overall). Reverted _build_step_message in condition_b_runner.py back to sending cumulative steps_so_far and step_images_list, matching the original commit 120968b behavior."
+    },
+    {
+      "title": "Missing facing directions for many objects",
+      "description": "Analysis showed 16.1% of objects had missing facing keys (ori=[0,0]), and 63.5% had wrong facing. Added explicit 'Facing Direction Rules (CRITICAL)' section to the Condition B prompt explaining: (1) ALL objects MUST have a facing key, (2) how to convert egocentric object facing to global cardinal directions based on agent's current facing, (3) add facing estimates for objects in M_{t-1} that lack them. This reduced missing facing and improved facing accuracy from 0.2020 to 0.2067."
+    },
+    {
+      "title": "Agent state context missing from prompt",
+      "description": "Added _get_agent_state_section() helper that extracts the agent's position and facing from M_{t-1} and displays it prominently at the top of the update rules. This helps the model reason about its spatial context when interpreting new observations."
+    },
+    {
+      "title": "High temperature adding noise across sequential steps",
+      "description": "Lowered temperature from 1.0 to 0.5 (iteration 0 used 0.3 which was too deterministic). The moderate temperature reduces random variance while preserving some exploration. Overall SE decreased from 0.0097 to 0.0078."
+    }
+  ],
+  "experiment_result_path": "EXPERIMENT_RESULTS/optimize_trace/iteration_1/",
+  "success": true,
+  "summary": "Reverted iteration 0's failed current-step-only change back to cumulative history. Added explicit facing direction guidance with egocentric-to-cardinal conversion rules. Added agent state anchoring from M_{t-1}. Lowered temperature to 0.5. Result: overall improved from 0.2230 to 0.2246 (+0.7%), facing from 0.2020 to 0.2067 (+2.3%), pos from 0.3380 to 0.3414 (+1.0%). Per-turn perception substantially improved from 0.1523 to 0.2035 (+33.6%). Direction slightly degraded 0.1290 to 0.1257 (-2.6%). 13/25 scenes improved, 12/25 degraded. Marginal but consistent positive improvement in overall, pos, and facing metrics."
+}
