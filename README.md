@@ -92,6 +92,23 @@ perception from 0.1523 to 0.2035 (+33.6%).
   `run_condition_b.py` (temperature 0.5)
 - Results: `EXPERIMENT_RESULTS/optimize_trace/iteration_1/`, `EXPERIMENT_RESULTS/condition_b_cogmap/`
 
+## Condition C Sequential Runner (Delta-Map Updates)
+
+Condition C uses a custom sequential runner (`delta_map_updates/runners/condition_c_runner.py`)
+that is forked from Condition B. Instead of outputting a full map, the model outputs only a
+compact delta JSON. The delta is applied programmatically via `apply_delta()`. Key files:
+
+- `delta_map_updates/prompts/condition_c.py`: Delta-format prompt with same update rules as B
+- `delta_map_updates/runners/condition_c_runner.py`: Sequential runner with delta parsing + application
+- `delta_map_updates/evaluation/delta_apply.py`: `apply_delta(M_prev, delta)` and `validate_delta()`
+- `delta_map_updates/scripts/run_condition_c.py`: Entry point
+- `delta_map_updates/evaluation/cogmap_eval.py`: `evaluate_condition_c()` and `evaluate_condition_c_per_turn()`
+
+Run: `python -m delta_map_updates.scripts.run_condition_c --num 25 --temperature 1.0`
+
+Results: Overall=0.2278 (SE=0.010), slightly above B (0.2246). Facing improved +7.9% over B.
+Output length reduced by 9.6%. Median 3 updates/step confirms sparse evidence premise.
+
 ## Key Files Modified in ToS
 
 - `Theory-of-Space/scripts/SpatialGym/base_model_config.yaml`: Added `gemini-3-pro` entry using MaaS proxy base_url.
