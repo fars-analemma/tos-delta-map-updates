@@ -104,10 +104,22 @@ compact delta JSON. The delta is applied programmatically via `apply_delta()`. K
 - `delta_map_updates/scripts/run_condition_c.py`: Entry point
 - `delta_map_updates/evaluation/cogmap_eval.py`: `evaluate_condition_c()` and `evaluate_condition_c_per_turn()`
 
-Run: `python -m delta_map_updates.scripts.run_condition_c --num 25 --temperature 1.0`
+Run: `python -m delta_map_updates.scripts.run_condition_c --num 25 --temperature 0.5`
 
-Results: Overall=0.2278 (SE=0.010), slightly above B (0.2246). Facing improved +7.9% over B.
-Output length reduced by 9.6%. Median 3 updates/step confirms sparse evidence premise.
+### Optimization History (Condition C)
+
+**Original**: temp=1.0, no facing-fill. Overall=0.2278, facing=0.2231.
+
+**Iteration 0** (current, SUCCESS): Three fixes applied together:
+1. Facing-fill post-processing in `apply_delta()`: fills missing facing with opposite of agent's facing direction
+2. Stronger facing requirement in prompt: mandatory for ALL delta entries, explicit small-object list
+3. Temperature 1.0 -> 0.5
+
+Results: Overall improved from 0.2278 to 0.2356 (+3.4%), facing from 0.2231 to 0.2528 (+13.3%).
+Optimized C is now the best condition overall (A=0.2187, B=0.2246, C=0.2356).
+
+- Code changes: `delta_apply.py` (facing fill), `condition_c.py` (stronger prompt), `run_condition_c.py` (temp=0.5)
+- Results: `EXPERIMENT_RESULTS/optimize_trace/iteration_0/`, `EXPERIMENT_RESULTS/condition_c_cogmap/`
 
 ## Key Files Modified in ToS
 

@@ -36,7 +36,7 @@ Your task is to produce a **delta update** — a compact JSON describing ONLY th
 4. **Agent update**: Always include the "agent" key in your delta with the updated position and facing direction based on the actions taken.
 
 ### Facing Direction Rules (CRITICAL)
-Every object in the delta MUST have a "facing" key with a cardinal direction ("north", "south", "east", "west") if its facing has changed or if it is newly observed.
+**EVERY object in your delta MUST have a "facing" key** with a cardinal direction ("north", "south", "east", "west"). This applies to ALL objects without exception — furniture, small items (caps, pans, cups, lamps, shoes, baskets, candles, vases, plants, etc.), and the agent. Objects that appear to lack an obvious front still have a facing direction in this environment.
 
 To determine an object's facing in **global cardinal directions**:
 - First determine YOUR current facing (the agent's cardinal direction after all rotations).
@@ -46,15 +46,18 @@ To determine an object's facing in **global cardinal directions**:
 - Objects whose front faces away from you: their facing = same as your facing direction.
 - Remember: when you face north, your right is east. When you face east, your right is south. And so on.
 
+If you are unsure of an object's facing, default to the opposite of your current facing direction (i.e., assume it faces toward you).
+
 ### Output Format (CRITICAL)
 Output ONLY a delta JSON with the following structure. Do NOT output the full map.
+Every entry MUST include both "position" and "facing".
 
 ```json
-{{"updates": {{"obj_name": {{"position": [x, y], "facing": "east"}}, "obj2": {{"position": [x, y]}}}}}}
+{{"updates": {{"obj_name": {{"position": [x, y], "facing": "east"}}, "obj2": {{"position": [x, y], "facing": "north"}}}}}}
 ```
 
 - The "updates" object contains ONLY entries that should change or be added.
-- Each entry can contain any subset of fields (position, facing, etc.) — only the provided fields will be overwritten.
+- Each entry MUST include "position" and "facing" fields.
 - Omitted entries are preserved from M_t-1.
 - If nothing needs to change, output: {{"updates": {{}}}}
 - Do NOT output the full updated map. Output ONLY the delta.
